@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_03_145920) do
+ActiveRecord::Schema.define(version: 2022_04_03_150226) do
 
   create_table "chapters", force: :cascade do |t|
     t.string "name"
     t.integer "course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["course_id"], name: "index_chapters_on_course_id"
   end
 
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2022_04_03_145920) do
     t.integer "chapter_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["chapter_id"], name: "index_units_on_chapter_id"
   end
 
