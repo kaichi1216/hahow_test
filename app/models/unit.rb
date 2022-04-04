@@ -4,6 +4,5 @@ class Unit < ApplicationRecord
   #'acts_as_list' gem provide method
   acts_as_list scope: :chapter
 
-  validates_presence_of :name
-  validates_presence_of :content
+  validates_presence_of :name, :content
 end
