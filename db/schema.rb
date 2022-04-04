@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2022_04_03_150226) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "chapters", force: :cascade do |t|
     t.string "name"
-    t.integer "course_id", null: false
+    t.bigint "course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2022_04_03_150226) do
     t.string "name"
     t.text "description"
     t.text "content"
-    t.integer "chapter_id", null: false
+    t.bigint "chapter_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
