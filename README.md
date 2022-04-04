@@ -42,8 +42,8 @@
     - 章節、單元需要依照需求排序，可以自己手刻跟使用Gem，如果手刻需要處理關聯資料的所有順序檢查驗證，評估後選擇使用Gem，原因是此套件符合現有需求且套件星數蠻高的且也有持續在維護。
   ---
   - 在這份專案中你遇到的困難、問題，以及解決的方法
-    - 初期API設計時，因條件只能有五隻API，但需要能同時處理3個model的資料，我以往的經驗API大多都是一隻 API 針對單一model去做操作，但需求又以POST API條件是課程、章節、單元需要同時被建立，最初做法是在其function內依照前端的request body 去對不同model params 分別填入，但會造成controller 程式碼太亂，不好閱讀及維護，便朝著這方面問題找看有沒有相關方式可以解決，最終找到Rails提供了 Nested Model  "accepts_nested_attributes_for" 方法，此做法可以讓我在課程的controller 用非常簡潔的寫法做到填入課程資料時一同填入章節和單元的資料，並且也會做其欄位驗證。
-    - 課程、章節、單元需要被同時建立的需求，原本想法也是一樣放在controller做處理，判斷此request  3個 model params 是不是都有資料，寫完之後覺得 controller 內非常亂，思考後開始查詢相關資料，想到或許可以用 ActiveModel::Validations 模組提供的驗證方法去做驗證三筆資料是否存在的需求，最終處理方式是把邏輯判斷拉到 FormObject，這樣我只需要在 create function 內把 params 帶進此 formObject 內，便可以得到相同於一般我們使用 object.valid? 的 errors.full_messages 的回傳值。
+    - 初期API設計時，因條件只能有五隻API，但需要能同時處理3個model的資料，我以往的經驗API大多都是一隻 API 針對單一model去做操作，最初做法是在其function內依照前端的request body 去對不同model params 分別填入，但會造成controller 程式碼太亂，不好閱讀及維護，便朝著這方面問題尋找有沒有相關方式可以解決，最終找到Rails提供了 Nested Model  "accepts_nested_attributes_for" 方法，此做法可以讓我在課程的controller 用非常簡潔的寫法做到填入課程資料時一同填入章節和單元的資料，並且也會做其欄位驗證。
+    - 課程、章節、單元需要被同時建立的需求，原本想法也是一樣放在controller做處理，判斷此request  3個 model params 是不是都有資料，寫完初版後覺得判斷可以拉出去獨立處理，查詢相關資料查到可以用 ActiveModel::Validations 模組提供的驗證方法去做驗證三筆資料是否存在的需求，最終處理方式是把邏輯判斷拉到 FormObject，這樣我只需要在 create function 內把 params 帶進此 formObject 內，便可以得到相同於一般我們使用 object.valid? 的 errors.full_messages 的回傳值。
 
   
 # 使用說明
@@ -305,7 +305,7 @@
   {
     "message": "Not found."
   }
-  
+
   #success
   status: 202
   response_body:
