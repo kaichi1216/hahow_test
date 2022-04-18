@@ -2,7 +2,7 @@ class Api::V1::CoursesController < Api::BaseController
   before_action :find_course, only: [:show, :update, :destroy]
 
   def index
-    @courses = Course.includes(:chapters, :units)
+    @courses = Course.includes(chapters: [:units])
   end
 
   def create
@@ -24,7 +24,7 @@ class Api::V1::CoursesController < Api::BaseController
   end
 
   def show
-    @course = Course.includes(:chapters, :units).find_by(id: params[:id])
+    @course = Course.includes(chapters: [:units]).find_by(id: params[:id])
   end
 
   def update
