@@ -1,7 +1,7 @@
 class Chapter < ApplicationRecord
   belongs_to :course
   has_many :units, -> { order 'units.position ASC' }, dependent: :destroy, inverse_of: :chapter
-  accepts_nested_attributes_for :units
+  accepts_nested_attributes_for :units, allow_destroy: true
 
    #'acts_as_list' gem provide method
   acts_as_list scope: :course

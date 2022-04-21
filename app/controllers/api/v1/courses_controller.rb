@@ -46,7 +46,7 @@ class Api::V1::CoursesController < Api::BaseController
   private
 
   def course_params
-    params.require(:course).permit(:name, :lecturer, :description, chapters_attributes: [:id, :name, :position, units_attributes: [:id, :name, :description, :content, :position]] )
+    params.require(:course).permit(:name, :lecturer, :description, chapters_attributes: [:id, :name, :position, :_destroy, units_attributes: [:id, :name, :description, :content, :position, :_destroy]] )
   end
 
   def find_course
