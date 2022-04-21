@@ -3,7 +3,7 @@ json.course do
   json.name @course.name
   json.lecturer @course.lecturer
   json.description @course.description
-  json.chapters @course.chapters.each do |chapter|
+  json.chapters @chapters.each do |chapter|
                   json.id chapter.id
                   json.name chapter.name
                   json.position chapter.position

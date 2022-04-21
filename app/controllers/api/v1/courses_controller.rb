@@ -24,7 +24,7 @@ class Api::V1::CoursesController < Api::BaseController
   end
 
   def show
-    @course = Course.includes(chapters: [:units]).find_by(id: params[:id])
+    @chapters = Chapter.includes(:units).where(course_id: @course.id)
   end
 
   def update
